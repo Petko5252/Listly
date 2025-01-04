@@ -5,6 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LISTLY - To-Do List Game</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .donate-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #0070ba; /* PayPal Blue */
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .donate-btn:hover {
+            background-color: #005b94; /* Darker Blue for hover effect */
+        }
+    </style>
 </head>
 <body>
     <div class="app-container">
@@ -25,6 +44,11 @@
         </div>
 
         <div id="completion-message" class="task-completion-message"></div>
+
+        <a href="https://www.paypal.com/donate/?hosted_button_id=F66HHDLJT85N8" 
+           target="_blank" rel="noopener noreferrer" class="donate-btn">
+           Donate via PayPal
+        </a>    
     </div>
 
     <script src="script.js"></script>
