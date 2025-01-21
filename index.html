@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LISTLY - To-Do List Game</title>
-    <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support me on Ko-fi', '#72a4f2', 'P5P019AVPF');kofiwidget2.draw();</script> 
     <link rel="stylesheet" href="style.css">
     <style>
         .donate-btn {
@@ -46,10 +45,15 @@
 
         <div id="completion-message" class="task-completion-message"></div>
 
-        <a href="https://www.paypal.com/paypalme/petkodev" 
-           target="_blank" rel="noopener noreferrer" class="donate-btn">
-           Donate via PayPal
-        </a>    
+        <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+<script>
+  kofiWidgetOverlay.draw('petkodev', {
+    'type': 'floating-chat',
+    'floating-chat.donateButton.text': 'Support me',
+    'floating-chat.donateButton.background-color': '#00b9fe',
+    'floating-chat.donateButton.text-color': '#fff'
+  });
+</script>    
     </div>
 
     <script src="script.js"></script>
