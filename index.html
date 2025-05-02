@@ -1,61 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LISTLY - To-Do List Game</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .donate-btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #0070ba; /* PayPal Blue */
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-        }
-
-        .donate-btn:hover {
-            background-color: #005b94; /* Darker Blue for hover effect */
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LISTLY - To-Do List Game</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .donate-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #0070ba;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    .donate-btn:hover {
+      background-color: #005b94;
+    }
+  </style>
 </head>
 <body>
-    <div class="app-container">
-        <img src="3d1abdf38545493dbbadcb4f7bbb7e9a-free (1).png" alt="LISTLY Logo" class="logo" width="100" height="100"/>
+  <div class="app-container">
+    <img src="3d1abdf38545493dbbadcb4f7bbb7e9a-free (1).png" alt="LISTLY Logo" class="logo" width="100" height="100"/>
 
-        <div class="task-container">
-            <input type="text" id="task-input" class="input-task" placeholder="Enter a task..." />
-            <button class="add-btn" onclick="addTask()">Add Task</button>
-        </div>
-
-        <ul id="task-list" class="task-list"></ul>
-
-        <div class="status-container">
-            <div class="points" id="points">Points: 0</div>
-            <div class="progress-bar-container">
-                <div id="progress-bar" class="progress-bar"></div>
-            </div>
-        </div>
-
-        <div id="completion-message" class="task-completion-message"></div>
-
-        <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
-<script>
-  kofiWidgetOverlay.draw('petkodev', {
-    'type': 'floating-chat',
-    'floating-chat.donateButton.text': 'Support me',
-    'floating-chat.donateButton.background-color': '#00b9fe',
-    'floating-chat.donateButton.text-color': '#fff'
-  });
-</script>    
+    <div class="task-container">
+      <input type="text" id="task-input" class="input-task" placeholder="Enter a task..." />
+      <button class="add-btn" onclick="addTask()">Add Task</button>
     </div>
 
+    <ul id="task-list" class="task-list"></ul>
+
+    <div class="status-container">
+      <div class="points" id="points">Points: 0</div>
+      <div class="progress-bar-container">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+    </div>
+
+    <div id="completion-message" class="task-completion-message"></div>
+
     <script src="script.js"></script>
+    <script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
+    <script>
+      kofiWidgetOverlay.draw('petkodev', {
+        'type': 'floating-chat',
+        'floating-chat.donateButton.text': 'Support me',
+        'floating-chat.donateButton.background-color': '#00b9fe',
+        'floating-chat.donateButton.text-color': '#fff'
+      });
+    </script>
+  </div>
 </body>
 </html>
