@@ -15,18 +15,7 @@ window.onload = function () {
   pointsDisplay.innerText = `Points: ${points}`;
 
   savedTasks.forEach(task => {
-    const taskItem = document.createElement('li');
-    taskItem.classList.add('task-item');
-    if (task.completed) {
-      taskItem.classList.add('completed');
-      tasksCompleted++;
-    }
-    taskItem.innerHTML = `
-      <span>${task.text}</span>
-      <button onclick="markCompleted(this)" ${task.completed ? "disabled" : ""}>Complete</button>
-    `;
-    taskList.appendChild(taskItem);
-    totalTasks++;
+    createTaskItem(task.text, task.completed);
   });
 
   updateProgress();
@@ -49,22 +38,43 @@ function addTask() {
   const taskText = taskInput.value.trim();
 
   if (taskText !== "") {
-    const taskItem = document.createElement('li');
-    taskItem.classList.add('task-item');
-    taskItem.innerHTML = `
-      <span>${taskText}</span>
-      <button onclick="markCompleted(this)">Complete</button>
-    `;
-    taskList.appendChild(taskItem);
-    totalTasks++;
-    updateProgress();
-    saveTasks();
+    createTaskItem(taskText, false);
     taskInput.value = '';
+    saveTasks();
   }
 }
 
+function createTaskItem(text, completed) {
+  const taskItem = document.createElement('li');
+  taskItem.classList.add('task-item');
+  if (completed) {
+    taskItem.classList.add('completed');
+    tasksCompleted++;
+  }
+
+  taskItem.innerHTML = `
+    <span>${text}</span>
+    <div class="task-actions">
+      <button onclick="markCompleted(this)" ${completed ? "disabled" : ""}>Complete</button>
+      <button onclick="deleteTask(this)">Delete</button>
+    </div>
+  `;
+
+  taskList.appendChild(taskItem);
+  totalTasks++;
+
+  if (completed) {
+    setTimeout(() => {
+      taskItem.remove();
+      saveTasks();
+    }, 10000);
+  }
+
+  updateProgress();
+}
+
 function markCompleted(button) {
-  const taskItem = button.parentElement;
+  const taskItem = button.closest('li');
   if (!taskItem.classList.contains('completed')) {
     taskItem.classList.add('completed');
     button.disabled = true;
@@ -79,8 +89,26 @@ function markCompleted(button) {
       completionMessage.style.opacity = 1;
     }
 
+    setTimeout(() => {
+      taskItem.remove();
+      updateProgress();
+      saveTasks();
+    }, 10000);
+
     saveTasks();
   }
+}
+
+function deleteTask(button) {
+  const taskItem = button.closest('li');
+  if (taskItem.classList.contains('completed')) {
+    tasksCompleted--;
+  }
+  totalTasks--;
+
+  taskItem.remove();
+  updateProgress();
+  saveTasks();
 }
 
 function updateProgress() {
