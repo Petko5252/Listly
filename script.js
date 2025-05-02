@@ -7,43 +7,83 @@ const pointsDisplay = document.getElementById('points');
 const progressBar = document.getElementById('progress-bar');
 const completionMessage = document.getElementById('completion-message');
 
-function addTask() {
-    const taskInput = document.getElementById('task-input');
-    const taskText = taskInput.value.trim();
+window.onload = function () {
+  const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+  const savedPoints = parseInt(localStorage.getItem('points')) || 0;
 
-    if (taskText !== "") {
-        const taskItem = document.createElement('li');
-        taskItem.classList.add('task-item');
-        taskItem.innerHTML = `
-            <span>${taskText}</span>
-            <button onclick="markCompleted(this)">Complete</button>
-        `;
-        taskList.appendChild(taskItem);
-        totalTasks++;
-        updateProgress();
-        taskInput.value = ''; // Clear the input field
+  points = savedPoints;
+  pointsDisplay.innerText = `Points: ${points}`;
+
+  savedTasks.forEach(task => {
+    const taskItem = document.createElement('li');
+    taskItem.classList.add('task-item');
+    if (task.completed) {
+      taskItem.classList.add('completed');
+      tasksCompleted++;
     }
+    taskItem.innerHTML = `
+      <span>${task.text}</span>
+      <button onclick="markCompleted(this)" ${task.completed ? "disabled" : ""}>Complete</button>
+    `;
+    taskList.appendChild(taskItem);
+    totalTasks++;
+  });
+
+  updateProgress();
+};
+
+function saveTasks() {
+  const tasks = [];
+  taskList.querySelectorAll('li').forEach(item => {
+    tasks.push({
+      text: item.querySelector('span').innerText,
+      completed: item.classList.contains('completed')
+    });
+  });
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+  localStorage.setItem('points', points.toString());
+}
+
+function addTask() {
+  const taskInput = document.getElementById('task-input');
+  const taskText = taskInput.value.trim();
+
+  if (taskText !== "") {
+    const taskItem = document.createElement('li');
+    taskItem.classList.add('task-item');
+    taskItem.innerHTML = `
+      <span>${taskText}</span>
+      <button onclick="markCompleted(this)">Complete</button>
+    `;
+    taskList.appendChild(taskItem);
+    totalTasks++;
+    updateProgress();
+    saveTasks();
+    taskInput.value = '';
+  }
 }
 
 function markCompleted(button) {
-    const taskItem = button.parentElement;
+  const taskItem = button.parentElement;
+  if (!taskItem.classList.contains('completed')) {
     taskItem.classList.add('completed');
-    button.disabled = true; // Disable the button once task is completed
+    button.disabled = true;
 
-    // Add points for completing a task
     points += 10;
     tasksCompleted++;
     pointsDisplay.innerText = `Points: ${points}`;
     updateProgress();
 
-    // Show a message if the user completes all tasks for the day
     if (tasksCompleted === totalTasks) {
-        completionMessage.innerText = "Congratulations! You completed all tasks!";
-        completionMessage.style.opacity = 1;
+      completionMessage.innerText = "Congratulations! You completed all tasks!";
+      completionMessage.style.opacity = 1;
     }
+
+    saveTasks();
+  }
 }
 
 function updateProgress() {
-    const progress = (tasksCompleted / totalTasks) * 100;
-    progressBar.style.width = progress + "%";
+  const progress = totalTasks === 0 ? 0 : (tasksCompleted / totalTasks) * 100;
+  progressBar.style.width = progress + "%";
 }
