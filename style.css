@@ -67,50 +67,32 @@ body {
   margin-top: 30px;
 }
 
-.task-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  padding: 15px;
-  background-color: #f8f8f8;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-}
-
-.task-item:hover {
-  transform: scale(1.05);
-}
-
-.task-item.completed {
-  text-decoration: line-through;
-  background-color: #c8e6c9;
-}
-
-.task-text {
-  flex: 1;
-  word-break: break-word;
-  white-space: normal;
-  font-size: 16px;
-}
-
-.task-actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-}
-
 .task-item button {
   padding: 8px 12px;
   border: none;
-  background-color: #ff5252;
   color: white;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
   transition: all 0.3s ease;
 }
+
+.task-item button:first-child {
+  background-color: #4caf50; /* ✅ green for complete */
+}
+
+.task-item button:first-child:hover {
+  background-color: #43a047;
+}
+
+.task-item button:last-child {
+  background-color: #00897b; /* ❌ green-ish for delete */
+}
+
+.task-item button:last-child:hover {
+  background-color: #00695c;
+}
+
 
 .task-item button:hover {
   background-color: #e04e4e;
