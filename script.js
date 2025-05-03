@@ -55,8 +55,8 @@ function createTaskItem(text, completed) {
   taskItem.innerHTML = `
     <span>${text}</span>
     <div class="task-actions">
-      <button onclick="markCompleted(this)" ${completed ? "disabled" : ""}>Complete</button>
-      <button onclick="deleteTask(this)">Delete</button>
+      <button onclick="markCompleted(this)" ${completed ? "disabled" : ""}>✅</button>
+      <button onclick="deleteTask(this)">❌</button>
     </div>
   `;
 
