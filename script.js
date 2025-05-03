@@ -25,7 +25,7 @@ function saveTasks() {
   const tasks = [];
   taskList.querySelectorAll('li').forEach(item => {
     tasks.push({
-      text: item.querySelector('span').innerText,
+      text: item.querySelector('span').innerText.replace(/^\d+\.\s/, ''),
       completed: item.classList.contains('completed')
     });
   });
@@ -52,8 +52,10 @@ function createTaskItem(text, completed) {
     tasksCompleted++;
   }
 
+  const taskNumber = taskList.children.length + 1;
+
   taskItem.innerHTML = `
-    <span>${text}</span>
+    <span class="task-text"><strong>${taskNumber}.</strong> ${text}</span>
     <div class="task-actions">
       <button onclick="markCompleted(this)" ${completed ? "disabled" : ""}>✅</button>
       <button onclick="deleteTask(this)">❌</button>
