@@ -25,7 +25,7 @@ function saveTasks() {
   const tasks = [];
   taskList.querySelectorAll('li').forEach(item => {
     tasks.push({
-      text: item.querySelector('span').innerText.replace(/^\d+\.\s/, ''),
+      text: item.querySelector('.task-text').innerText.replace(/^\d+\.\s/, ''),
       completed: item.classList.contains('completed')
     });
   });
@@ -68,6 +68,7 @@ function createTaskItem(text, completed) {
   if (completed) {
     setTimeout(() => {
       taskItem.remove();
+      updateProgress();
       saveTasks();
     }, 10000);
   }
