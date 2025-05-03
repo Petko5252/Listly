@@ -67,6 +67,28 @@ body {
   margin-top: 30px;
 }
 
+.task-item {
+  margin-bottom: 15px;
+}
+
+.task-text {
+  word-break: break-word;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.task-item.completed .task-text {
+  text-decoration: line-through;
+}
+
+.task-item.completed button:first-child {
+  text-decoration: line-through;
+}
+
+.task-item.completed button:last-child {
+  text-decoration: none;
+}
+
 .task-item button {
   padding: 8px 12px;
   border: none;
@@ -91,11 +113,6 @@ body {
 
 .task-item button:last-child:hover {
   background-color: #00695c;
-}
-
-
-.task-item button:hover {
-  background-color: #e04e4e;
 }
 
 .status-container {
